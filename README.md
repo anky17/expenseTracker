@@ -38,7 +38,7 @@ A Flutter-based mobile application to help you track your daily expenses efficie
 
 ### Download apk from below to test
 
-  <a href="https://raw.githubusercontent.com/anky17/Expense-Tracker/main/expense_tracker.apk">
+  <a href="https://raw.githubusercontent.com/anky17/expenseTracker/main/expense_tracker.apk">
         <img src="https://www.coinagemag.com/wp-content/uploads/2017/12/free-download-png-blue-color-free-download-button-679-1.png" align="center" alt="download-icon"  />
     </a>
 
