@@ -2,19 +2,37 @@ import 'package:expense_tracker/view/model/expenses_model.dart';
 import 'package:flutter/material.dart';
 
 class NewExpensesWidget extends StatefulWidget {
-  const NewExpensesWidget({super.key, required this.onAddExpense});
+  const NewExpensesWidget({
+    super.key,
+    required this.onAddExpense,
+    this.initialExpense,
+  });
 
   final void Function(ExpensesModel expense) onAddExpense;
+  final ExpensesModel? initialExpense;
 
   @override
   State<NewExpensesWidget> createState() => _NewExpensesState();
 }
 
 class _NewExpensesState extends State<NewExpensesWidget> {
-  final _titleController = TextEditingController();
-  final _amountController = TextEditingController();
+  var _titleController = TextEditingController();
+  var _amountController = TextEditingController();
   DateTime? _selectedDate;
   Category _selectedCategory = Category.groceries;
+
+  @override
+  void initState() {
+    super.initState();
+    _titleController = TextEditingController(
+      text: widget.initialExpense?.title ?? '',
+    );
+    _amountController = TextEditingController(
+      text: widget.initialExpense?.amount.toString() ?? '',
+    );
+    _selectedDate = widget.initialExpense?.date;
+    _selectedCategory = widget.initialExpense?.category ?? Category.groceries;
+  }
 
   void _presentDatePicker() async {
     final now = DateTime.now();

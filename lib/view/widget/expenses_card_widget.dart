@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class ExpensesCardWidget extends StatelessWidget {
   const ExpensesCardWidget({super.key, required this.expenses});
   final ExpensesModel? expenses;
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -23,9 +24,9 @@ class ExpensesCardWidget extends StatelessWidget {
                 const Spacer(),
                 Icon(categoryIcons[expenses?.category]),
                 const SizedBox(width: 5),
-                Text(expenses?.formattedDate ?? "n/a")
+                Text(expenses?.formattedDate ?? "n/a"),
               ],
-            )
+            ),
           ],
         ),
       ),

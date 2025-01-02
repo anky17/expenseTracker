@@ -85,6 +85,27 @@ class _ExpensesPageState extends State<ExpensesPage> {
     );
   }
 
+  void _editExpense(ExpensesModel oldExpense, ExpensesModel updatedExpense) {
+    final expenseIndex = _registeredExpenses.indexOf(oldExpense);
+    setState(() {
+      _registeredExpenses[expenseIndex] = updatedExpense;
+    });
+    _saveExpenses();
+  }
+
+  void _showEditExpenseBottomSheet(ExpensesModel oldExpense) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (cntx) => NewExpensesWidget(
+        onAddExpense: (updatedExpense) {
+          _editExpense(oldExpense, updatedExpense);
+        },
+        initialExpense: oldExpense,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget mainContent = Center(
@@ -97,6 +118,9 @@ class _ExpensesPageState extends State<ExpensesPage> {
       mainContent = ExpensesListBuilderWidget(
         expenses: _registeredExpenses,
         onTapRemoveExpense: _removeExpense,
+        onTapEditExpense: (oldExpense) {
+          _showEditExpenseBottomSheet(oldExpense);
+        },
       );
     }
     return Scaffold(

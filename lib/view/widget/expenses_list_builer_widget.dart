@@ -4,28 +4,39 @@ import 'package:flutter/material.dart';
 
 class ExpensesListBuilderWidget extends StatelessWidget {
   const ExpensesListBuilderWidget(
-      {super.key, required this.expenses, required this.onTapRemoveExpense});
+      {super.key,
+      required this.expenses,
+      required this.onTapRemoveExpense,
+      required this.onTapEditExpense});
   final List<ExpensesModel?> expenses;
   final void Function(ExpensesModel expense) onTapRemoveExpense;
+  final void Function(ExpensesModel expense) onTapEditExpense;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: expenses.length,
       itemBuilder: (context, index) {
-        return Dismissible(
+        return GestureDetector(
+          onTap: () => onTapEditExpense(expenses[index]!),
+          child: Dismissible(
             key: ValueKey(expenses[index]),
             background: Container(
               margin: EdgeInsets.all(5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: Theme.of(context).colorScheme.error.withOpacity(.7),
+                color:
+                    Theme.of(context).colorScheme.error.withValues(alpha: .8),
               ),
             ),
             onDismissed: (direction) {
               onTapRemoveExpense(expenses[index]!);
             },
-            child: ExpensesCardWidget(expenses: expenses[index]));
+            child: ExpensesCardWidget(
+              expenses: expenses[index],
+            ),
+          ),
+        );
       },
     );
   }
