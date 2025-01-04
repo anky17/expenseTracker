@@ -2,11 +2,11 @@ import 'package:expense_tracker/view/home/expenses_page.dart';
 import 'package:flutter/material.dart';
 
 var kColorScheme = ColorScheme.fromSeed(
-  seedColor: Color.fromARGB(255, 96, 59, 181),
+  seedColor: const Color.fromARGB(255, 96, 59, 181),
 );
 var kDarkColorScheme = ColorScheme.fromSeed(
   brightness: Brightness.dark,
-  seedColor: Color.fromARGB(255, 5, 99, 125),
+  seedColor: const Color.fromARGB(255, 5, 99, 125),
 );
 
 void main() {
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       darkTheme: ThemeData.dark().copyWith(
         colorScheme: kDarkColorScheme,
-        cardTheme: CardTheme().copyWith(
+        cardTheme: const CardTheme().copyWith(
           color: kDarkColorScheme.secondaryContainer,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
@@ -35,11 +35,11 @@ class MyApp extends StatelessWidget {
       ),
       theme: ThemeData().copyWith(
         colorScheme: kColorScheme,
-        appBarTheme: AppBarTheme().copyWith(
+        appBarTheme: const AppBarTheme().copyWith(
           backgroundColor: kColorScheme.onPrimaryContainer,
           foregroundColor: kColorScheme.primaryContainer,
         ),
-        cardTheme: CardTheme().copyWith(
+        cardTheme: const CardTheme().copyWith(
           color: kColorScheme.secondaryContainer,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(

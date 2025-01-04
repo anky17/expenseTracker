@@ -58,15 +58,15 @@ class _NewExpensesState extends State<NewExpensesWidget> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Invalid Input'),
-          content: Text(
+          title: const Text('Invalid Input'),
+          content: const Text(
               'Please make sure to enter valid title, amount, date and category.'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Okay'),
+              child: const Text('Okay'),
             ),
           ],
         ),
@@ -94,14 +94,18 @@ class _NewExpensesState extends State<NewExpensesWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(16, 48, 16, 16),
+      padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
       child: Column(
         children: [
           TextField(
             controller: _titleController,
             maxLength: 50,
             decoration: InputDecoration(
-              label: Text('Title'),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: const BorderSide(color: Colors.grey),
+              ),
+              label: const Text('Title'),
             ),
           ),
           Row(
@@ -111,32 +115,46 @@ class _NewExpensesState extends State<NewExpensesWidget> {
                   controller: _amountController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    prefix: Text('Rs. '),
-                    label: Text('Amount'),
+                    prefix: const Text('Rs. '),
+                    label: const Text('Amount'),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Colors.grey),
+                    ),
                   ),
                 ),
               ),
-              SizedBox(width: 20),
+              const SizedBox(width: 20),
               Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      _selectedDate == null
-                          ? 'No Date Selected'
-                          : formatter.format(_selectedDate!),
+                child: InkWell(
+                  onTap: _presentDatePicker,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 12, horizontal: 10),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    IconButton(
-                      onPressed: _presentDatePicker,
-                      icon: Icon(Icons.calendar_month),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          _selectedDate == null
+                              ? 'No Date Selected'
+                              : formatter.format(_selectedDate!),
+                          style: const TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                        const Icon(Icons.calendar_month, color: Colors.blue),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               )
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             children: [
               DropdownButton(
@@ -167,11 +185,11 @@ class _NewExpensesState extends State<NewExpensesWidget> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text('Cancel'),
+                child: const Text('Cancel'),
               ),
               ElevatedButton(
                 onPressed: _submitExpenses,
-                child: Text('Save'),
+                child: const Text('Save'),
               ),
             ],
           ),

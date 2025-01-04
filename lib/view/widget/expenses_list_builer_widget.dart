@@ -22,7 +22,7 @@ class ExpensesListBuilderWidget extends StatelessWidget {
           child: Dismissible(
             key: ValueKey(expenses[index]),
             background: Container(
-              margin: EdgeInsets.all(5),
+              margin: const EdgeInsets.all(5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color:
